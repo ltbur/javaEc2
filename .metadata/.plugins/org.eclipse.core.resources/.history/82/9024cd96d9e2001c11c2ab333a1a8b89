@@ -1,0 +1,19 @@
+package dao;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import model.Mutter;
+
+public class MutterDAO {
+	private final String JDBC_URL = "jdbc:h2:tcp//localhost/~/docoTsubuDB";
+	private final String DB_USER = "sa";
+	private final String DB_PASS = "";
+
+	public List<Mutter> findAll(){
+		List<Mutter> mutterList = new ArrayList<>();
+
+		return mutterList;
+	}
+
+}

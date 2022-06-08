@@ -1,0 +1,9 @@
+package model;
+
+public class GetMutterListLogic {
+
+	public GetMutterListLogic() {
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
+
+}

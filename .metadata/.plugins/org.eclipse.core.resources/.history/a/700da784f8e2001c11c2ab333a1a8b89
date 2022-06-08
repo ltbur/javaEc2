@@ -1,0 +1,9 @@
+package model;
+
+public class Todo {
+
+	public Todo() {
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
+
+}

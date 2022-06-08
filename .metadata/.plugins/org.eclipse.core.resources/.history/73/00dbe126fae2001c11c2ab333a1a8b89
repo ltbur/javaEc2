@@ -1,0 +1,9 @@
+package controller;
+
+public class Update {
+
+	public Update() {
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
+
+}

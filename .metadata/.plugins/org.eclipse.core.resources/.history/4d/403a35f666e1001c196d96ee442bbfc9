@@ -1,0 +1,9 @@
+package dao;
+
+public class LunchDAO {
+
+	public LunchDAO() {
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
+
+}

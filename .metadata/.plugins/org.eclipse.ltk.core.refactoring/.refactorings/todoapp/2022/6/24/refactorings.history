@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy element &apos;context.xml&apos; to &apos;META-INF&apos;&#x0D;&#x0A;- 元のプロジェクト: &apos;todoapp&apos;&#x0D;&#x0A;- 宛先要素: &apos;META-INF&apos;&#x0D;&#x0A;- オリジナル要素: &apos;context.xml&apos;" description="ファイルをコピー" element1="WebContent/META-INF/context.xml" files="1" flags="589830" folders="0" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyResources" stamp="1654561021243" target="/ejword/WebContent/META-INF" units="0" version="1.0"/>
+</session>

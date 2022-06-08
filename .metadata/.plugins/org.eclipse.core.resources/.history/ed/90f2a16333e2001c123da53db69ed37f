@@ -1,0 +1,129 @@
+package dao;
+
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
+import model.Person;
+
+public class PersonDAO {
+	private Connection db;
+	private PreparedStatement ps;
+	private ResultSet rs;
+
+	//接続共通処理
+	private void connect() throws NamingException, SQLException {
+		Context context = new InitialContext();
+		DataSource ds = (DataSource) context.lookup("java:comp/env/jdbc/jsp");
+		this.db = ds.getConnection();
+	}
+
+	//切断共通処理
+	private void disconnect() {
+		try {
+			if (rs != null) {
+				rs.close();
+			}
+			if (ps != null) {
+				ps.close();
+			}
+			if (db != null) {
+				db.close();
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public List<Person> findAll() {
+		List<Person> list = new ArrayList<>();
+		try {
+			this.connect();
+			ps = db.prepareStatement("SELECT * FROM people");
+			rs = ps.executeQuery();
+			while (rs.next()) {
+				int id = rs.getInt("id");
+				String name = rs.getString("name");
+				String menu = rs.getString("person");
+				Person l = new Person(id, name, person);
+				list.add(l);
+			}
+		} catch (NamingException | SQLException e) {
+
+			e.printStackTrace();
+		}finally {
+			this.disconnect();
+		}
+
+		return list;
+	}
+	public void insertOne(Person person) {
+		try {
+			this.connect();
+			ps=db.prepareStatement("INSERT INTO People(name,person) VALUES(?,?)");
+			ps.setString(1,person.getName());
+			ps.setString(2,person.getPerson());
+			ps.executeUpdate();
+		} catch (NamingException | SQLException e) {
+			e.printStackTrace();
+		}finally {
+			this.disconnect();
+		}
+	}
+	public Person findOne(int id) {
+		Person person=null;
+		try {
+			this.connect();
+			ps=db.prepareStatement("SELECT * FROM people WHERE id=?");
+			ps.setInt(1, id);
+			rs=ps.executeQuery();
+			if(rs.next()) {
+				String name=rs.getString("name");
+				int person = rs.getInt("person");
+				person=new Person(id,name,person);
+			}
+		} catch (NamingException | SQLException e) {
+			e.printStackTrace();
+		}finally {
+			this.disconnect();
+		}
+
+		return person;
+	}
+	public void updateOne(Lunch lunch) {
+		try {
+			this.connect();
+			ps=db.prepareStatement("UPDATE lunches SET name=?,menu=? WHERE id=?");
+			ps.setString(1, lunch.getName());
+			ps.setString(2, lunch.getMenu());
+			ps.setInt(3, lunch.getId());
+			ps.executeUpdate();
+		} catch (NamingException | SQLException e) {
+			e.printStackTrace();
+		}finally {
+			this.disconnect();
+		}
+	}
+	public void deleteOne(int id) {
+		try {
+			this.connect();
+			ps=db.prepareStatement("DELETE FROM lunches WHERE id=?");
+			ps.setInt(1, id);
+			ps.executeUpdate();
+		} catch (NamingException | SQLException e) {
+			e.printStackTrace();
+		}finally {
+			this.disconnect();
+		}
+	}
+
+}
+

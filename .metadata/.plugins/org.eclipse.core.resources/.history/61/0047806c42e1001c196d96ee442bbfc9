@@ -1,0 +1,9 @@
+package model;
+
+public class LoginLogic {
+
+	public LoginLogic() {
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
+
+}
